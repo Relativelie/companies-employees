@@ -1,0 +1,27 @@
+.row {
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.selected {
+  background-color: var(--color-primary-100-20) !important;
+}
+
+.row:nth-child(odd) {
+  background-color: var(--color-secondary-100);
+}
+
+.row:nth-child(even) {
+  background-color: var(--color-secondary-200);
+}
+
+.row:hover {
+  background-color: var(--color-primary-100-20);
+}
+
+.tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 80vh;
+}

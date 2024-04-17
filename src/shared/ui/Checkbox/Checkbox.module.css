@@ -1,0 +1,11 @@
+.label {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.input {
+  margin-right: var(--margin-small);
+  cursor: pointer;
+}

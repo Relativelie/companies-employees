@@ -1,0 +1,13 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr 50px;
+}
+
+.container > :first-child {
+  grid-row: 1;
+  overflow: hidden;
+}
+
+.container > :nth-child(2) {
+  grid-row: 2 / span 2;
+}

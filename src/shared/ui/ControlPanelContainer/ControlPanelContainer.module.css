@@ -1,0 +1,13 @@
+.controlPanel {
+  min-height: 50px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: start;
+  justify-content: center;
+  gap: var(--margin-medium);
+  align-items: center;
+  padding: var(--padding-small);
+  background-color: var(--color-secondary-100);
+  border: var(--border-light);
+  border-radius: var(--border-radius-small);
+}

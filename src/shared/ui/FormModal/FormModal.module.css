@@ -1,0 +1,21 @@
+.form {
+  margin: var(--margin-medium) auto;
+  padding: var(--padding-medium);
+  background-color: var(--color-secondary-100);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: var(--border-light);
+}
+
+.formHeader {
+  font-size: var(--font-size-large);
+  color: var(--color-secondary-900);
+  margin-bottom: var(--margin-medium);
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: right;
+  gap: var(--margin-medium);
+  margin-top: var(--margin-medium);
+}

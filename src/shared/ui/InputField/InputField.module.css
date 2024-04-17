@@ -1,0 +1,21 @@
+.inputContainer {
+  margin-bottom: var(--margin-medium);
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--margin-small);
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: var(--border-light);
+  border-radius: var(--border-radius-small);
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--color-primary-300);
+  outline: none;
+}

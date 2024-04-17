@@ -1,0 +1,56 @@
+.button {
+  padding: var(--padding-small) var(--padding-medium);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.primary {
+  background-color: var(--color-primary-300);
+  border: none;
+  color: var(--font-color-secondary);
+}
+
+.primary:hover,
+.button.primary:focus {
+  background-color: var(--color-primary-100);
+}
+
+.secondary {
+  background-color: var(--color-secondary-100);
+  border: var(--border-light);
+}
+
+.disabled {
+  background-color: var(--color-secondary-700);
+  border: none;
+  color: var(--font-color-secondary);
+  cursor: not-allowed;
+}
+
+.secondary:hover,
+.button.secondary:focus {
+  background-color: var(--color-secondary-300);
+}
+
+.danger {
+  background-color: var(--color-danger-100);
+  border: none;
+  color: var(--font-color-secondary);
+}
+
+.danger:hover,
+.button.danger:focus {
+  background-color: var(--color-danger-300);
+}
+
+.button.danger:focus,
+.button.secondary:focus,
+.button.primary:focus {
+  border: var(--border-medium);
+}

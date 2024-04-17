@@ -1,0 +1,9 @@
+.theadTr {
+  display: block;
+  background-color: var(--color-primary-900);
+  color: var(--font-color-secondary);
+}
+
+.theadTr th {
+  height: 3em;
+}

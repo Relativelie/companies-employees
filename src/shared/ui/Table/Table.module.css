@@ -1,0 +1,15 @@
+.table {
+  width: 100%;
+  background-color: var(--color-secondary-100);
+  table-layout: fixed;
+  padding: var(--padding-small);
+}
+
+.table th:not(:first-child),
+.table td:not(:first-child) {
+  padding: var(--padding-extra-small);
+  text-align: left;
+  width: 25em;
+  word-wrap: break-word;
+  word-break: break-word;
+}
