@@ -1,9 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/companies-employees',
   plugins: [react()],
   resolve: {
     alias: {
@@ -13,6 +14,6 @@ export default defineConfig({
       '@entities': resolve(__dirname, './src/entities'),
       '@features': resolve(__dirname, './src/features'),
       '@widgets': resolve(__dirname, './src/widgets'),
-    }
-  }
-})
+    },
+  },
+});
