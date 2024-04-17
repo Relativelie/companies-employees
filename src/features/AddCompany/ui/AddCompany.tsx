@@ -4,6 +4,7 @@ import { InputField } from '@shared/ui/InputField';
 import { useEditForm } from '../model/useEditForm';
 import { FormModal } from '@shared/ui/FormModal';
 import useFormModal from '@shared/ui/FormModal/useFormModal';
+import { useEffect } from 'react';
 
 const editFields = {
   name: 'Название компании',
@@ -11,13 +12,19 @@ const editFields = {
 };
 
 const AddCompany = () => {
-  const { formData, handleChange } = useEditForm();
+  const { formData, handleChange, resetData } = useEditForm();
   const { name, address } = formData;
   const { isModalOpen, showModal, hideModal, handleSave, error } = useFormModal(
     addCompany,
     convertCompany,
     editFields,
   );
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      resetData();
+    }
+  }, [isModalOpen, resetData]);
 
   return (
     <>

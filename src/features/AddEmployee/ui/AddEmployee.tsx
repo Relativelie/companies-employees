@@ -7,6 +7,7 @@ import { useAppSelector } from '@shared/model';
 import { getSelectedCompanies } from '@entities/company';
 import { FormModal } from '@shared/ui/FormModal';
 import { Select } from '@shared/ui/Select';
+import { useEffect } from 'react';
 
 const editFields = {
   firstName: 'Имя',
@@ -16,7 +17,7 @@ const editFields = {
 };
 
 const AddEmployee = () => {
-  const { formData, handleChange, onSelect } = useEditForm();
+  const { formData, handleChange, onSelect, resetData } = useEditForm();
   const { isModalOpen, showModal, hideModal, handleSave, error } = useFormModal(
     addEmployee,
     convertEmployee,
@@ -24,6 +25,12 @@ const AddEmployee = () => {
   );
   const { firstName, lastName, position, companyId } = formData;
   const selectedCompanies = useAppSelector(getSelectedCompanies);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      resetData();
+    }
+  }, [isModalOpen, resetData]);
 
   return (
     <>

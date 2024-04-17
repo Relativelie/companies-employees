@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useAppSelector } from '@shared/model';
 import { Company, getSelectedCompaniesIds } from '@entities/company';
 
+const INIT_DATA = { firstName: '', lastName: '', position: '' };
+
 export const useEditForm = () => {
   const selectedCompanies = useAppSelector(getSelectedCompaniesIds);
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    position: '',
+    ...INIT_DATA,
     companyId: selectedCompanies[0],
   });
 
@@ -21,5 +21,9 @@ export const useEditForm = () => {
     setFormData((prev) => ({ ...prev, companyId: selected.id }));
   };
 
-  return { formData, handleChange, onSelect };
+  const resetData = () => {
+    setFormData({ ...INIT_DATA, companyId: selectedCompanies[0] });
+  };
+
+  return { formData, handleChange, onSelect, resetData };
 };
