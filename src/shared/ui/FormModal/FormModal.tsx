@@ -9,6 +9,7 @@ type FormModalProps = {
   onConfirm: () => void;
   actionTitle: string;
   children: React.ReactNode;
+  error?: string | null;
 };
 
 const FormModal: React.FC<FormModalProps> = ({
@@ -17,9 +18,10 @@ const FormModal: React.FC<FormModalProps> = ({
   onCancel,
   actionTitle,
   children,
+  error,
 }) => {
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+    event.stopPropagation();
     onConfirm();
   };
 
@@ -29,6 +31,7 @@ const FormModal: React.FC<FormModalProps> = ({
         <h3>{actionTitle}</h3>
         <form className={styles.form} onSubmit={handleSubmit}>
           {children}
+          {error && <div className={styles.error}>{error}</div>}
           <div className={styles.actions}>
             <Button type={ButtonTypes.Submit}>Сохранить</Button>
             <Button variant={ButtonVariants.Secondary} onClick={onCancel}>

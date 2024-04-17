@@ -3,17 +3,30 @@ import { useState, useRef, useCallback } from 'react';
 type SaveAction = (value: string) => void;
 type CancelAction = () => void;
 
-const useInputField = (initialValue: string, onSave: SaveAction, onCancel?: CancelAction) => {
+const useInputField = (
+  initialValue: string,
+  onSave: SaveAction,
+  required = false,
+  onCancel?: CancelAction,
+) => {
   const [value, setValue] = useState(initialValue);
   const isCancel = useRef(false);
+
+  const handleSave = useCallback(() => {
+    if (required && !value.trim()) {
+      setValue(initialValue);
+    } else {
+      onSave(value);
+    }
+  }, [onSave, value, initialValue, required]);
 
   const onBlur = useCallback(() => {
     if (isCancel.current) {
       isCancel.current = false;
     } else {
-      onSave(value);
+      handleSave();
     }
-  }, [onSave, value]);
+  }, [handleSave, value]);
 
   const cancelEditing = useCallback(() => {
     isCancel.current = true;

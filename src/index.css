@@ -69,4 +69,8 @@ body {
   --color-danger-400: #924254;
   --color-danger-700: #61293e;
   --color-danger-900: #301128;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+  }
 }

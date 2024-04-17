@@ -11,3 +11,9 @@
   border: var(--border-light);
   border-radius: var(--border-radius-small);
 }
+
+@media screen and (max-width: 900px) {
+  .controlPanel {
+    min-height: 8em;
+  }
+}

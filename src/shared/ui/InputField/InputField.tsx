@@ -12,6 +12,8 @@ type InputFieldProps = {
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onEscape?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  errorMessage?: string;
 };
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -25,6 +27,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onBlur,
   onEscape,
   onEnter,
+  required = false,
 }) => {
   const ref = useRef<HTMLInputElement>(null);
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -38,7 +41,7 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <div className={styles.inputContainer}>
+    <div className={label && styles.inputContainer}>
       {label && (
         <label htmlFor={name} className={styles.label}>
           {label}
@@ -55,6 +58,7 @@ const InputField: React.FC<InputFieldProps> = ({
         className={styles.input}
         onBlur={onBlur}
         onKeyDown={handleKeyDown}
+        required={required}
         autoComplete='off'
       />
     </div>

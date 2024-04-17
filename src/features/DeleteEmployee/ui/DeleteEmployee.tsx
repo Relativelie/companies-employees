@@ -10,6 +10,7 @@ const DeleteEmployee = () => {
   const dispatch = useAppDispatch();
   const employees = useAppSelector(selectEmployees);
   const selectedEmployees = useAppSelector(getSelectedEmployees);
+  const hasSelectedEmployees = selectedEmployees.length > 0;
 
   const deleteCompany = () => {
     dispatch(removeSelectedEmployees());
@@ -21,16 +22,22 @@ const DeleteEmployee = () => {
     hideModal();
   };
 
+  const actionTitle = selectedEmployees.length === 1 ? 'сотрудника' : 'сотрудников';
+
   return (
     <>
-      <Button onClick={showModal} variant={ButtonVariants.Danger}>
+      <Button
+        onClick={showModal}
+        variant={ButtonVariants.Danger}
+        isDisabled={!hasSelectedEmployees}
+      >
         Удалить выбранныx сотрудников
       </Button>
       <ConfirmationModal
         isOpen={isModalOpen}
         onCancel={hideModal}
         onConfirm={deleteCompany}
-        actionTitle='сотрудника'
+        actionTitle={`удалить ${actionTitle}`}
       />
     </>
   );

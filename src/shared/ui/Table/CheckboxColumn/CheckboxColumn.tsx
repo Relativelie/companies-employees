@@ -8,9 +8,14 @@ type CheckboxColumnProps = {
 };
 
 const CheckboxColumn: React.FC<CheckboxColumnProps> = ({ checked, onChange, label }) => {
+  const onClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.stopPropagation();
+    onChange();
+  };
+
   return (
     <div className={styles.checkboxColumn}>
-      <Checkbox checked={checked} onChange={onChange} label={label} />
+      <Checkbox checked={checked} onChange={onClick} label={label} />
     </div>
   );
 };

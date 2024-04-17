@@ -1,6 +1,20 @@
 .container {
   height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1em;
   overflow: hidden;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+      overflow: auto;
+  }
 }

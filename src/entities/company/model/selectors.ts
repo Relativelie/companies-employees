@@ -16,3 +16,8 @@ export const getSelectedCompaniesIds = createSelector(
 export const getSelectedCompanies = createSelector(selectBase, (state: CompanyState) =>
   state.companies.filter((company) => state.selectedCompaniesIds.includes(company.id)),
 );
+
+export const getHasSelectedCompanies = createSelector(
+  selectBase,
+  (state: CompanyState) => state.selectedCompaniesIds.length > 0,
+);

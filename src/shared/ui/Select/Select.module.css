@@ -1,7 +1,7 @@
 .selectContainer {
   display: flex;
   flex-direction: column;
-  margin: var(--margin-small);
+  gap: var(--margin-extra-small)
 }
 
 .label {
@@ -13,7 +13,7 @@
   padding: var(--padding-small) var(--padding-medium);
   border: var(--border-light);
   border-radius: var(--border-radius-small);
-  background-color: var(--color-secondary-100);
+  background-color: white;
   cursor: pointer;
   outline: none;
 }

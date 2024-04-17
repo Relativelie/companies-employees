@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# Список Компаний - Тестовое Задание
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Этот проект - одностраничное приложение "Список компаний", разработанное с использованием React.js, Redux Toolkit и TypeScript. В нём реализованы две взаимосвязанные таблицы: одна для отображения списка компаний, а другая для отображения сотрудников выбранной компании.
 
-Currently, two official plugins are available:
+## Функциональность
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Компании**: Таблица слева отображает список компаний с чекбоксом для выделения всех строк, названием компании, количеством сотрудников и адресом.
+- **Сотрудники**: Таблица справа отображает сотрудников выбранной компании с чекбоксом для выделения всех строк, фамилией, именем и должностью сотрудника.
+- **Выделение**: Клик по чекбоксу выделяет соответствующую строку в таблицах.
+- **Редактирование**: Все поля таблиц, кроме счётчика сотрудников, редактируемые.
+- **Добавление/Удаление**: Возможность добавления и удаления компаний и сотрудников. 
+- **Обновление Счётчика**: При добавлении/удалении сотрудников счётчик компаний обновляется автоматически.
 
-## Expanding the ESLint configuration
+## Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React.js для построения пользовательского интерфейса.
+- Redux Toolkit для глобального управления состоянием приложения.
+- TypeScript для статической типизации и повышения надежности кода.
+- CSS Modules для изоляции стилей компонентов.
 
-- Configure the top-level `parserOptions` property like this:
+## Установка и Запуск
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Клонируйте репозиторий:
+   git clone <url_репозитория>
+2. Перейдите в папку проекта и установите зависимости:
+   cd company-list-app
+   npm install
+3. Запустите проект локально:
+   cd company-list-app
+   npm run dev
+Приложение будет доступно по адресу `http://localhost:3000`.

@@ -48,7 +48,6 @@ const companySlice = createSlice({
       }
     },
     reduceEmployeesCount: (state, action: PayloadAction<Employee[]>) => {
-      console.log('reduceEmployeesCount', action.payload);
       const reductions = action.payload.reduce(
         (acc, employee) => {
           acc[employee.companyId] = (acc[employee.companyId] || 0) + 1;

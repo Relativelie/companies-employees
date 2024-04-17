@@ -8,7 +8,7 @@ import {
   toggleAllEmployees,
   toggleEmployee,
 } from '@entities/employee';
-import EmployeeTableInput from './EmplTableInput';
+import EmployeeTableInput from './EmployeeTableInput';
 
 const columns: Column<Employee>[] = [
   {
@@ -46,14 +46,14 @@ const EmployeeTable = () => {
     [dispatch],
   );
 
-  const isSelectedEmpl = useCallback(
+  const isSelectedEmployees = useCallback(
     (employee: Employee) => {
       return selectedEmployees?.some((id) => id === employee.id) || false;
     },
     [selectedEmployees],
   );
 
-  const onToggleAllEmpl = useCallback(() => {
+  const onToggleAllEmployees = useCallback(() => {
     dispatch(toggleAllEmployees());
   }, [dispatch]);
 
@@ -62,9 +62,9 @@ const EmployeeTable = () => {
       columns={columns}
       data={employees}
       toggleItem={onToggleEmpl}
-      isRowSelected={isSelectedEmpl}
+      isRowSelected={isSelectedEmployees}
       isAllSelected={employees.length === selectedEmployees.length && !!employees.length}
-      onToggleAll={onToggleAllEmpl}
+      onToggleAll={onToggleAllEmployees}
     />
   );
 };

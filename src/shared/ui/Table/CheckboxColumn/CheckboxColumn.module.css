@@ -3,3 +3,13 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 900px) {
+  .checkboxColumn {
+    width: 5em;
+  }
+
+  .checkboxColumn label {
+    display: block;
+  }
+}

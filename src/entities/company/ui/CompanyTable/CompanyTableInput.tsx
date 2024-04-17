@@ -2,7 +2,7 @@ import { updateCompany } from '@entities/company';
 import { Company } from '@entities/company/model/types';
 import { memo } from 'react';
 import { useDispatch } from 'react-redux';
-import useInputField from '@shared/model/useInputField';
+import useInputField from '@shared/ui/InputField/useInputField';
 import { InputField } from '@shared/ui/InputField';
 
 type CompanyTableInputProps = {
@@ -20,6 +20,7 @@ const CompanyTableInput = ({ company, placeholder, companyKey: key }: CompanyTab
   const { value, onBlur, cancelEditing, onChange } = useInputField(
     company[key] as string,
     saveValue,
+    true,
   );
 
   return (

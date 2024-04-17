@@ -75,10 +75,8 @@ const employeeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(toggleAllCompanies, (state) => {
-      const allEmployees = Object.values(state.allEmployees).reduce(
-        (sum, employees) => sum.concat(employees),
-        [],
-      );
+      const allEmployees = Object.values(state.allEmployees).flat();
+
       if (state.shownEmployees.length === allEmployees.length) {
         state.shownEmployees = [];
         state.selectedEmployees = [];
@@ -108,7 +106,7 @@ const employeeSlice = createSlice({
         return;
       }
       // Else add employees to shownEmployees
-      const newShownEmployees = state.allEmployees[toggledCompanyId];
+      const newShownEmployees = state.allEmployees[toggledCompanyId] ?? [];
       state.shownEmployees = [...state.shownEmployees, ...newShownEmployees];
     });
   },

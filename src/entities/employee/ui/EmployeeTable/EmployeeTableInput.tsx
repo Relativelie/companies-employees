@@ -2,7 +2,7 @@ import { updateEmployee } from '@entities/employee';
 import { Employee } from '@entities/employee/model/types';
 import { memo } from 'react';
 import { useDispatch } from 'react-redux';
-import useInputField from '@shared/model/useInputField';
+import useInputField from '@shared/ui/InputField/useInputField';
 import { InputField } from '@shared/ui/InputField';
 
 type EmployeeTableInputProps = {
@@ -22,6 +22,7 @@ const EmployeeTableInput: React.FC<EmployeeTableInputProps> = ({
   const { value, onBlur, cancelEditing, onChange } = useInputField(
     employee[employeeKey],
     saveValue,
+    true,
   );
 
   return (

@@ -7,6 +7,7 @@ type SelectProps<T> = {
   onChange: (selected: T) => void;
   selected?: T;
   name: string;
+  label?: string;
   getLabel?: (option?: T) => string | undefined;
   getValue?: (option?: T) => string | undefined;
 };
@@ -16,6 +17,7 @@ const Select = <T,>({
   onChange,
   selected,
   name,
+  label,
   getLabel = (option: any) => option.label,
   getValue = (option: any) => option.value,
 }: SelectProps<T>) => {
@@ -29,7 +31,7 @@ const Select = <T,>({
   };
   return (
     <div className={styles.selectContainer}>
-      {selected && <label className={styles.label}>{getLabel(selected)}</label>}
+      {selected && <label className={styles.label}>{label}</label>}
       <select
         name={name}
         className={styles.select}

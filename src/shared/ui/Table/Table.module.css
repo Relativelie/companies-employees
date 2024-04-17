@@ -7,7 +7,7 @@
 
 .table th:not(:first-child),
 .table td:not(:first-child) {
-  padding: var(--padding-extra-small);
+  padding: var(--padding-small);
   text-align: left;
   width: 25em;
   word-wrap: break-word;

@@ -25,3 +25,21 @@
   overflow: auto;
   height: 80vh;
 }
+
+@media screen and (max-width: 1200px) {
+  .tbody {
+    height: 75vh;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .tbody {
+    height: 65vh;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .tbody {
+    height: 250px;
+  }
+}

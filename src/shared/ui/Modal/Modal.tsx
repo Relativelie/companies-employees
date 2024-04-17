@@ -24,7 +24,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   const onOutsideClick = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      console.log('onOutsideClick');
       if (event.target === event.currentTarget) {
         onClose();
       }
