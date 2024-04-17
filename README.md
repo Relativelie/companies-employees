@@ -1,7 +1,8 @@
 # Список Компаний - Тестовое Задание
+Приложение позволяет управлять информацией о компаниях и их сотрудниках через таблицы. Можно добавлять, удалять и редактировать данные, а также отображать связанных сотрудников при выделении компаний.
 
 ## Stack
-React.js * Redux Toolkit * TypeScript * CSS Modules - FSD
+React.js - Redux Toolkit - TypeScript - CSS Modules - FSD
 
 ## Демо
 https://relativelie.github.io/companies-employees/
