@@ -41,7 +41,7 @@ const EmployeeTable = () => {
 
   const onToggleEmpl = useCallback((company: Employee) => {
     dispatch(toggleEmployee(company.id));
-  }, []);
+  }, [dispatch]);
 
   const isSelectedEmpl = useCallback(
     (employee: Employee) => {

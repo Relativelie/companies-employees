@@ -4,7 +4,7 @@ import { Fallback } from '@shared/ui/Fallback';
 import ErrorBoundary from './ErrorBoundary';
 
 type ProvidersProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 const Providers: React.FC<ProvidersProps> = ({ children }) => {

@@ -11,11 +11,7 @@ type CompanyTableInputProps = {
   placeholder: string;
 };
 
-const CompanyTableInput: React.FC<CompanyTableInputProps> = ({
-  company,
-  placeholder,
-  companyKey: key,
-}) => {
+const CompanyTableInput = ({ company, placeholder, companyKey: key }: CompanyTableInputProps) => {
   const dispatch = useDispatch();
   const saveValue = (value: string) => {
     dispatch(updateCompany({ ...company, [key]: value }));
