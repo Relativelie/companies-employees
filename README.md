@@ -1,7 +1,7 @@
 # Список Компаний - Тестовое Задание
 
 ## Stack
-React.js * Redux Toolkit * TypeScript * CSS Modules - FSD
+React.js - Redux Toolkit - TypeScript - CSS Modules - FSD
 
 ## Демо
 https://relativelie.github.io/companies-employees/
