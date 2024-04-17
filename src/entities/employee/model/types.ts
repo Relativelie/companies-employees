@@ -7,13 +7,9 @@ export interface Employee {
 }
 
 export interface EmployeeState {
-  // shownEmployees: Employee[];
-  // selectedEmployees: string[];
-  // allEmployees: Employee[];
-
   shownEmployees: Employee[];
   selectedEmployees: string[];
-  allEmployees: EmployeeDictionary;
+  allEmployees: EmployeeMap;
 }
 
-export type EmployeeDictionary = Record<string, Employee[]>;
+export type EmployeeMap = Record<string, Employee[]>;

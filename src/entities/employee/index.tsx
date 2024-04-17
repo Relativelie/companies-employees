@@ -5,6 +5,7 @@ export {
   toggleEmployee,
   removeSelectedEmployees,
   updateEmployee,
+  removeEmployeesByCompanyId,
 } from './model/employeeSlice';
 export { type Employee, type EmployeeState } from './model/types';
 export { selectEmployees, getSelectedEmployees } from './model/selectors';

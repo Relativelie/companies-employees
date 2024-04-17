@@ -30,7 +30,7 @@ const AddEmployee = () => {
     if (!isModalOpen) {
       resetData();
     }
-  }, [isModalOpen, resetData]);
+  }, [isModalOpen]);
 
   return (
     <>

@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Employee, EmployeeDictionary, EmployeeState } from './types';
+import { Employee, EmployeeMap, EmployeeState } from './types';
 import { employees } from './data';
 import { filterOutSelected } from '../lib/filterOutSelected';
 import { updateEmployeeById } from '../lib/updateEmployeeById';
 import { toggleAllCompanies, toggleCompany } from '@entities/company';
 
-const groupEmployeesByCompany = (employees: Employee[]): EmployeeDictionary => {
-  return employees.reduce<EmployeeDictionary>((acc, employee) => {
+const groupEmployeesByCompany = (employees: Employee[]): EmployeeMap => {
+  return employees.reduce<EmployeeMap>((acc, employee) => {
     const { companyId } = employee;
     if (!acc[companyId]) {
       acc[companyId] = [];
@@ -36,6 +36,7 @@ const employeeSlice = createSlice({
       state.shownEmployees.push(employee);
     },
     removeSelectedEmployees: (state) => {
+      console.log('removeSelectedEmployees');
       state.shownEmployees = filterOutSelected(state.shownEmployees, state.selectedEmployees);
 
       state.selectedEmployees.forEach((id) => {
@@ -72,7 +73,29 @@ const employeeSlice = createSlice({
       }
       state.selectedEmployees = state.shownEmployees.map((item) => item.id);
     },
+    removeEmployeesByCompanyId: (state, action: PayloadAction<string[]>) => {
+      const companyIdsToRemove = action.payload;
+
+      // removing employees from allEmployees based on the company IDs
+      companyIdsToRemove.forEach((companyId) => {
+        if (state.allEmployees[companyId]) {
+          delete state.allEmployees[companyId];
+        }
+      });
+
+      // updating shownEmployees
+      state.shownEmployees = state.shownEmployees.filter(
+        (employee) => !companyIdsToRemove.includes(employee.companyId),
+      );
+
+      // updating selectedEmployees in case they belong to the removed companies
+      state.selectedEmployees = state.selectedEmployees.filter((employeeId) => {
+        const employee = state.shownEmployees.find((emp) => emp.id === employeeId);
+        return employee && !companyIdsToRemove.includes(employee.companyId);
+      });
+    },
   },
+
   extraReducers: (builder) => {
     builder.addCase(toggleAllCompanies, (state) => {
       const allEmployees = Object.values(state.allEmployees).flat();
@@ -92,12 +115,12 @@ const employeeSlice = createSlice({
       );
 
       if (companyIsCurrentlyShown) {
-        // If the company is currently shown, remove its employees from shownEmployees
+        // if the company is currently shown, remove its employees from shownEmployees
         state.shownEmployees = state.shownEmployees.filter(
           (emp) => emp.companyId !== toggledCompanyId,
         );
 
-        // Also remove these employees from selectedEmployees
+        // also remove these employees from selectedEmployees
         const companyEmployees = state.allEmployees[toggledCompanyId];
 
         state.selectedEmployees = state.selectedEmployees.filter(
@@ -105,7 +128,7 @@ const employeeSlice = createSlice({
         );
         return;
       }
-      // Else add employees to shownEmployees
+      // else add employees to shownEmployees
       const newShownEmployees = state.allEmployees[toggledCompanyId] ?? [];
       state.shownEmployees = [...state.shownEmployees, ...newShownEmployees];
     });
@@ -118,5 +141,6 @@ export const {
   toggleEmployee,
   removeSelectedEmployees,
   updateEmployee,
+  removeEmployeesByCompanyId,
 } = employeeSlice.actions;
 export default employeeSlice.reducer;

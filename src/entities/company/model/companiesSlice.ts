@@ -50,7 +50,10 @@ const companySlice = createSlice({
       }
     },
     reduceEmployeesCount: (state, action: PayloadAction<Employee[]>) => {
-      const reductions = action.payload.reduce(
+      // action.payload - array of left employees
+
+      // create map with keys are company ids, values are number of employees
+      const remainingEmployees = action.payload.reduce(
         (acc, employee) => {
           acc[employee.companyId] = (acc[employee.companyId] || 0) + 1;
           return acc;
@@ -58,9 +61,10 @@ const companySlice = createSlice({
         {} as Record<string, number>,
       );
 
-      Object.keys(reductions).forEach((companyId) => {
-        if (state.companies[companyId] && state.selectedCompaniesIds.includes(companyId)) {
-          state.companies[companyId].employeesCount -= reductions[companyId];
+      // update employees count in each companies
+      Object.keys(remainingEmployees).forEach((companyId) => {
+        if (state.companies[companyId]) {
+          state.companies[companyId].employeesCount = remainingEmployees[companyId];
         }
       });
     },

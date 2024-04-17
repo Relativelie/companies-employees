@@ -24,7 +24,7 @@ const AddCompany = () => {
     if (!isModalOpen) {
       resetData();
     }
-  }, [isModalOpen, resetData]);
+  }, [isModalOpen]);
 
   return (
     <>

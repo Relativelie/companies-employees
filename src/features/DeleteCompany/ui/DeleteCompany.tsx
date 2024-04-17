@@ -1,4 +1,10 @@
-import { getHasSelectedCompanies, getSelectedCompanies, removeCompanies } from '@entities/company';
+import {
+  getHasSelectedCompanies,
+  getSelectedCompanies,
+  getSelectedCompaniesIds,
+  removeCompanies,
+} from '@entities/company';
+import { removeEmployeesByCompanyId } from '@entities/employee';
 
 import { useAppDispatch, useAppSelector } from '@shared/model';
 import { Button, ButtonVariants } from '@shared/ui/Button';
@@ -10,9 +16,11 @@ const DeleteCompany = () => {
   const dispatch = useAppDispatch();
   const hasSelectedCompanies = useAppSelector(getHasSelectedCompanies);
   const selectedCompanies = useAppSelector(getSelectedCompanies);
+  const selectedCompaniesIds = useAppSelector(getSelectedCompaniesIds);
 
   const deleteCompany = () => {
     dispatch(removeCompanies());
+    dispatch(removeEmployeesByCompanyId(selectedCompaniesIds));
     hideModal();
   };
 
