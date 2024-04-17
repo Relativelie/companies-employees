@@ -6,7 +6,6 @@ export interface Company {
 }
 
 export interface CompanyState {
-  companies: Company[];
+  companies: Record<string, Company>;
   selectedCompaniesIds: string[];
-  hasMore: boolean;
 }

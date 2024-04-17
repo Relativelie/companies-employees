@@ -4,9 +4,14 @@ import { addEmployee, Employee } from '@entities/employee';
 import { companies } from './data';
 
 const initialState: CompanyState = {
-  companies,
+  companies: companies.reduce(
+    (acc, company) => {
+      acc[company.id] = company;
+      return acc;
+    },
+    {} as Record<string, Company>,
+  ),
   selectedCompaniesIds: [],
-  hasMore: true,
 };
 
 const companySlice = createSlice({
@@ -14,21 +19,18 @@ const companySlice = createSlice({
   initialState,
   reducers: {
     addCompany: (state, action: PayloadAction<Company>) => {
-      state.companies.push(action.payload);
+      state.companies[action.payload.id] = action.payload;
     },
     removeSelectedCompanies: (state) => {
-      if (!state.selectedCompaniesIds.length) {
-        return;
-      }
-      state.companies = state.companies.filter(
-        (company) => !state.selectedCompaniesIds.includes(company.id),
-      );
+      state.selectedCompaniesIds.forEach((id) => {
+        delete state.companies[id];
+      });
       state.selectedCompaniesIds = [];
     },
     updateCompany: (state, action: PayloadAction<Company>) => {
-      const company = state.companies.find((company) => company.id === action.payload.id);
+      const company = state.companies[action.payload.id];
       if (company) {
-        Object.assign(company, action.payload);
+        state.companies[action.payload.id] = { ...company, ...action.payload };
       }
     },
     toggleCompany: (state, action: PayloadAction<string>) => {
@@ -41,10 +43,10 @@ const companySlice = createSlice({
       state.selectedCompaniesIds.push(id);
     },
     toggleAllCompanies: (state) => {
-      if (state.selectedCompaniesIds.length === state.companies.length) {
+      if (state.selectedCompaniesIds.length === Object.keys(state.companies).length) {
         state.selectedCompaniesIds = [];
       } else {
-        state.selectedCompaniesIds = state.companies.map((item) => item.id);
+        state.selectedCompaniesIds = Object.keys(state.companies);
       }
     },
     reduceEmployeesCount: (state, action: PayloadAction<Employee[]>) => {
@@ -56,18 +58,18 @@ const companySlice = createSlice({
         {} as Record<string, number>,
       );
 
-      state.companies.forEach((company) => {
-        if (state.selectedCompaniesIds.includes(company.id)) {
-          company.employeesCount = reductions[company.id] || 0;
+      Object.keys(reductions).forEach((companyId) => {
+        if (state.companies[companyId] && state.selectedCompaniesIds.includes(companyId)) {
+          state.companies[companyId].employeesCount -= reductions[companyId];
         }
       });
     },
   },
   extraReducers: (builder) => {
     builder.addCase(addEmployee, (state, action: PayloadAction<Employee>) => {
-      const company = state.companies.find((company) => company.id === action.payload.companyId);
+      const company = state.companies[action.payload.companyId];
       if (company) {
-        company.employeesCount++;
+        company.employeesCount = (company.employeesCount || 0) + 1;
       }
     });
   },
