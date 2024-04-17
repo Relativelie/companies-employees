@@ -18,6 +18,9 @@
       "prettier --write"
     ]
   },
+  "engines": {
+    "npm": ">=7.0.0"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "react": "^18.2.0",
