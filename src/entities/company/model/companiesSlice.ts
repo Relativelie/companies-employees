@@ -71,7 +71,7 @@ const companySlice = createSlice({
     builder.addCase(addEmployee, (state, action: PayloadAction<Employee>) => {
       const company = state.companies[action.payload.companyId];
       if (company) {
-        company.employeesCount = (company.employeesCount || 0) + 1;
+        company.employeesCount = company.employeesCount + 1;
       }
     });
   },

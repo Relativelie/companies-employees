@@ -36,9 +36,6 @@ const employeeSlice = createSlice({
       state.shownEmployees.push(employee);
     },
     removeSelectedEmployees: (state) => {
-      console.log('removeSelectedEmployees');
-      state.shownEmployees = filterOutSelected(state.shownEmployees, state.selectedEmployees);
-
       state.selectedEmployees.forEach((id) => {
         const employee = state.shownEmployees.find((emp) => emp.id === id);
         if (employee) {
@@ -46,6 +43,8 @@ const employeeSlice = createSlice({
           state.allEmployees[employee.companyId] = companyEmployees.filter((emp) => emp.id !== id);
         }
       });
+
+      state.shownEmployees = filterOutSelected(state.shownEmployees, state.selectedEmployees);
 
       state.selectedEmployees = [];
     },
